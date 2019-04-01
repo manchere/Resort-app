@@ -1,0 +1,172 @@
+<main class="main">
+	<div class="container-fluid">
+		<div id="ui-view">
+			<br/>
+			<style>
+				.sides{
+					margin: 8px;
+					padding: 8px;
+				}
+			</style>
+			{{!-- content goes here --}}
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-sm-6">
+						<br/>
+						<br/>
+						<div class="row">
+							<table class="table table-responsive-sm table-striped table-sm">
+								<tbody>
+									<tr><td><span>Resort Name:</span><td class=" text-left">{{data.resortName}}</td></td></tr>
+									<tr><td><span>Date Added:</span><td class=" text-left">{{data.dateCreated}}</td></td></tr>
+									<tr><td><span>Rate Per Day:</span><td class=" text-left">GH¢ {{data.ratePerDay}}</td></td></tr>
+									<tr><td><span>Country:</span><td class=" text-left">{{data.rcountry}}</td></td></tr>
+									<tr><td><span>Region:</span><td class=" text-left">{{data.rregion}}</td></td></tr>
+									<tr><td><span>City:</span><td class=" text-left">{{data.rcity}}</td></td></tr>
+									<tr><td><span>Status:</span><td class=" text-left"><span class="badge badge-success">Opened</span></td></td></tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<h3 class="text-center">Property Description</h3>
+						<p class=" sides border btn-outline-white">
+							{{data.resortDescription}}.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="apping griding">
+						<ul class="hs full">
+							{{#each data}}
+								<li class="item">
+									<img alt="something" id="images" src={{image}} />
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Code begins here -->
+			<style>
+				.images{
+					height: 200px;
+					width: 200px;
+				}
+
+				:root {
+					--gutter: 70px;
+				}
+				.apping > * {
+					grid-column: 2 / -2;
+				}
+
+				.apping > .full {
+					grid-column: 1 / -1;
+				}
+
+				.hs {
+					display: grid;
+					grid-gap: calc(var(--gutter) / 2);
+					grid-template-columns: 10px;
+					grid-template-rows: minmax(150px, 1fr);
+					grid-auto-flow: column;
+					grid-auto-columns: calc(50% - var(--gutter) * 2);
+
+					overflow-x: scroll;
+					scroll-snap-type: x proximity;
+					padding-bottom: calc(.75 * var(--gutter));
+					margin-bottom: calc(-.25 * var(--gutter));
+				}
+
+				.hs:before,
+				.hs:after {
+					content: '';
+					width: 10px;
+				}
+
+				.griding {
+					display: grid;
+					place-items: center;
+					background: transparent;
+				}
+
+				ul {
+					list-style: none;
+					padding: 0;
+				}
+
+				.apping {
+					padding: var(--gutter) 0;
+					display: grid;
+					grid-gap: var(--gutter) 0;
+					grid-template-columns: var(--gutter) 1fr var(--gutter);
+					align-content: start;
+				}
+
+				.apping {
+					width: 100vw;
+					height: 400px;
+					background: transparent;
+					overflow-y: scroll;
+				}
+
+				.hs > li,
+				.item {
+					scroll-snap-align: center;
+					padding: calc(var(--gutter) / 2 * 1.5);
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					background: transparent;
+					border-radius: 8px;
+				}
+
+				*{padding:0;margin:0;}
+
+				.float{
+					position:fixed;
+					width:60px;
+					height:60px;
+					bottom:70px;
+					right:40px;
+					background-color:rgb(69, 22, 2);
+					color:#FFF;
+					border-radius:50px;
+					text-align:center;
+					box-shadow: 2px 2px 3px rgb(0, 0, 0);
+				}
+
+				.my-float{
+					margin-top:18px;
+					margin-left: 5px;
+					color: white !important;
+				}
+
+				.btn{
+					background: transparent !important;
+				}
+			</style>
+
+			<form action="/editproperty" enctype="application/x-www-form-urlencoded" method="POST">
+				<input type="text" hidden value={{data._id}} name="resortId" id="resortId">
+				<a class="float">
+					<button type="submit" class="btn">
+						<i class="fa fa-edit my-float"></i>
+					</button>
+				</a>
+			</form>
+		</div>
+	</div>
+</main>
+
+<script>
+	function editproperty(){
+
+	}
+</script>

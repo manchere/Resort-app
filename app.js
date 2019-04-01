@@ -6,10 +6,17 @@ var logger = require('morgan');
 const cors = require('cors')
 const mongoose = require('mongoose')
 const mongodbUri = require('mongodb-uri')
+var passport = require('passport');
+
+require('./passport');
 
 var config = require('./config');
 var apiRouter = require('./routes/index');
-var adminRouter = require('./routes/Admin/add_resort');
+var adminAuth = require('./routes/Admin/authetication');
+var adminAdd = require('./routes/Admin/add_resort');
+var adminEdit = require('./routes/Admin/editresort');
+
+var homeRouter = require('./routes/Admin/home');
 
 var app = express();
 
@@ -47,8 +54,13 @@ db.once('open', function callback () {
     console.log('Successfully connected to MongoDB');
 });
 
+global.User = require('./models/user');
+
 app.use('/v1/api/resort', apiRouter);
-app.use('/', adminRouter);
+app.use('/', adminAuth);
+app.use('/', adminAdd);
+app.use('/', adminEdit);
+app.use('/', homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,56 @@
+.roundimage{
+	width: 50px !important;
+	height: 50px !important;
+	/* display: block; */
+	/* margin-left: auto; */
+	/* margin-right: auto; */
+	border-radius: 25px !important;
+	padding: 4px !important;
+}
+
+.roundimage2{
+	width: 120px !important;
+	height: 120px !important;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 60px !important;
+}
+
+.card_body_align{
+	margin-top: 100px;
+}
+
+
+/* #container{
+	display: grid;
+	grid-template-rows: 400px 400px 400px;
+	grid-template-columns: 400px 400px 400px;
+	margin: 8px;
+}
+
+#item{
+	margin: 8px;
+	display: grid;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	justify-content: center;
+	box-sizing: border-box;
+	border: 1px solid black;
+	align-items: center;
+} */
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 350px 350px 350px;
+	margin: 8px !important;
+	padding: 8px !important;
+}
+.grid-item {
+	margin: 8px !important;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: 0px;
+	font-size: 30px;
+	text-align: center;
+}

@@ -1,0 +1,354 @@
+<main class="main">
+	<div class="container-fluid">
+		<div id="ui-view">
+			<br />
+			<br />
+
+			<form enctype="application/x-www-form-urlencoded" method="post" class="container-fluid">
+
+				<div class="animated fadeIn">
+
+					{{#if data}}
+						<div class="row">
+						<!-- 2.-->
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-header">1.
+									<strong>Resort</strong>
+									<small>Information</small>
+								</div>
+								<div class="card-body">
+
+									<div class="row">
+										<div class="form-group col-sm-8">
+											{{!-- <label for="city">Property Name</label> --}}
+											<input class="form-control" id="city" value={{data.resortName}} name="resortName" type="text"
+												placeholder="Resort Name">
+										</div>
+										<div class="form-group col-sm-4">
+											{{!-- <label for="postal-code">pricing</label> --}}
+											<input class="form-control" id="postal-code" value={{data.ratePerDay}} name="ratePerDay" type="number"
+												placeholder="Rate Per Day">
+										</div>
+									</div>
+
+									<!-- /.row-->
+									<div class="row">
+										<div class="form-group col-sm-8">
+											{{!-- <label for="city">Property Name</label> --}}
+											<input class="form-control" id="city" value={{data.dateCreated}} name="dateCreated" type="date"
+												placeholder="Date Created">
+										</div>
+									</div>
+									<!-- /.row-->
+
+									<div class="form-group row">
+										<div class="col-md-12">
+											<textarea class="form-control" id="textarea-input" name="resortDescription" rows="4"
+												placeholder="Resort description..."></textarea>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- /.col-->
+					</div>
+
+					{{!-- Add Images --}}
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-header">2.
+								<strong>Select image</strong>
+								<small>for the resort</small>
+							</div>
+							<div class="card-body">
+								<div class="form-group row">
+									<div class="col-md-9">
+										<input id="file-multiple-input" class="photos" type="file" name="images">
+										<input hidden name="image" id="file-url" value={{image}} type="text">
+									</div>
+								</div>
+							</div>
+
+							<div class="progress">
+								<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="uploader" role="progressbar" aria-valuenow="0"
+									aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<style>
+						.progress{
+							display: block !important;
+						}
+					</style>
+
+					{{!-- 3. --}}
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">2.
+									<i class="fa fa-globe"></i>Location Information</div>
+								<div class="card-body">
+									<div class="form-horizontal">
+
+										<div class="form-group">
+											<label class="col-form-label">Add Location From Map</label>
+											<div class="controls">
+												<div class="input-group">
+													<input class="form-control" value={{locationCoordinate}} name="locationCoordinate" id="coordinates"
+														size="16" type="text">
+													<span class="input-group-append">
+														<button onclick=getlocation() class="btn btn-secondary"
+															type="button">Find Location On Map</button>
+													</span>
+													<script>
+														function getlocation() {
+															$.get("https://ipinfo.io", function (response) {
+																console.log(response.ip, response.country, response.loc, response);
+																document.getElementById("country").value = response.country;
+																document.getElementById("region").value = response.region;
+																document.getElementById("cities").value = response.city;
+																document.getElementById("coordinates").value = response.loc;
+															}, "jsonp")
+														}
+													</script>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-form-label" for="prependedInput">Country</label>
+												<select class="form-control" id="country" name="rcountry">
+													<option value="0">Select Country</option>
+													<option value="Ghana">Ghana</option>
+												</select>
+
+										</div>
+										<div class="form-group">
+											<label class="col-form-label" for="appendedInput">Region</label>
+												<select class="form-control" id="region" name="rregion">
+													<option value="0">Select Region</option>
+													<option value="Greater Accra">Greater Accra</option>
+												</select>
+
+										</div>
+
+									<div class="form-group">
+										<label class="col-form-label" for="appendedInput">City</label>
+										<select class="form-control" id="cities" name="rcity">
+											<option value="0">Select location</option>
+											<option value="Achimota">Achimota</option>
+											<option value="Tesano">Tesano</option>
+											<option value="East Legon">East Legon</option>
+											<option value="Spintex">Spintex</option>
+											<option value="Abeka La Paz">Abeka La Paz</option>
+											<option value="Abelemkpe">Abelemkpe</option>
+											<option value="Ablorh Adjei">Ablorh Adjei</option>
+											<option value="Abokobi">Abokobi</option>
+											<option value="Aborfu">Aborfu</option>
+											<option value="Abossey Okai">Abossey Okai</option>
+											<option value="Accra Central">Accra Central</option>
+											<option value="Accra new Town">Accra new Town</option>
+											<option value="Adabraka">Adabraka</option>
+											<option value="Adenta">Adenta</option>
+											<option value="Adjankote">Adjankote</option>
+											<option value="Adjiriganor">Adjiriganor</option>
+											<option value="Agbogba">Agbogba</option>
+											<option value="Agbogbloshie">Agbogbloshie</option>
+											<option value="Airport">Airport</option>
+											<option value="Akatsi Abor">Akatsi Abor</option>
+											<option value="Akweteman">Akweteman</option>
+											<option value="Alajo">Alajo</option>
+											<option value="Apenkwa">Apenkwa</option>
+											<option value="Ashaley Botwe">Ashaley Botwe</option>
+											<option value="Ashongman Estates">Ashongman Estates</option>
+											<option value="Asylum Down">Asylum Down</option>
+											<option value="Avenor">Avenor</option>
+											<option value="Awoshie">Awoshie</option>
+											<option value="Banana Inn">Banana Inn</option>
+											<option value="Bubuashie">Bubuashie</option>
+											<option value="Bukom">Bukom</option>
+											<option value="Burma Camp">Burma Camp</option>
+											<option value="Cantonments">Cantonments</option>
+											<option value="Carprice">Carprice</option>
+											<option value="Chantang">Chantang</option>
+											<option value="Chorkor">Chorkor</option>
+											<option value="Circle">Circle</option>
+											<option value="Dansoman">Dansoman</option>
+											<option value="Darkuman">Darkuman</option>
+											<option value="Dome">Dome</option>
+											<option value="Dzorwulu">Dzorwulu</option>
+											<option value="East Legon (Okponglo)">East Legon (Okponglo)</option>
+											<option value="Kanda Estate">Kanda Estate</option>
+											<option value="Haatso">Haatso</option>
+											<option value="Kaneshie">Kaneshie</option>
+											<option value="Kantamanto">Kantamanto</option>
+											<option value="Kasoa">Kasoa</option>
+											<option value="Kokomlemle">Kokomlemle</option>
+											<option value="Korle Gonno">Korle Gonno</option>
+											<option value="Korle-Bu">Korle-Bu</option>
+											<option value="Kotobabi">Kotobabi</option>
+											<option value="Kwabenya">Kwabenya</option>
+											<option value="Kwashieman">Kwashieman</option>
+											<option value="La-Aborm">La-Aborm</option>
+											<option value="Labone">Labone</option>
+											<option value="Lartebiokorshie">Lartebiokorshie</option>
+											<option value="Lashibi">Lashibi</option>
+											<option value="Legon">Legon</option>
+											<option value="Madina">Madina</option>
+											<option value="Mallam">Mallam</option>
+											<option value="Mallam Atta">Mallam Atta</option>
+											<option value="Mamobi">Mamobi</option>
+											<option value="Mamprobi">Mamprobi</option>
+											<option value="Mataheko">Mataheko</option>
+											<option value="McCarthy Hill">McCarthy Hill</option>
+											<option value="New Achimota">New Achimota</option>
+											<option value="New Aplaku Mandela">New Aplaku Mandela</option>
+											<option value="New Ashongman">New Ashongman</option>
+											<option value="New Fadama">New Fadama</option>
+											<option value="New Mamprobi">New Mamprobi</option>
+											<option value="New Weija">New Weija</option>
+											<option value="Nii Boi Town">Nii Boi Town</option>
+											<option value="Nima">Nima</option>
+											<option value="North Kaneshie">North Kaneshie</option>
+											<option value="North Legon">North Legon</option>
+											<option value="North Ridge">North Ridge</option>
+											<option value="Nungua">Nungua</option>
+											<option value="Nungua East">Nungua East</option>
+											<option value="Nungua Old Town">Nungua Old Town</option>
+											<option value="Nungua-Zongo">Nungua-Zongo</option>
+											<option value="Odorkor">Odorkor</option>
+											<option value="Osu">Osu</option>
+											<option value="Osu Ako-Adjei">Osu Ako-Adjei</option>
+											<option value="Oyarifa">Oyarifa</option>
+											<option value="Pokuase">Pokuase</option>
+											<option value="Ringway Estates">Ringway Estates</option>
+											<option value="Ridge">Ridge</option>
+											<option value="Roman Ridge">Roman Ridge</option>
+											<option value="Sakaman">Sakaman</option>
+											<option value="Shiashie">Shiashie</option>
+											<option value="South La">South La</option>
+											<option value="South Odorkor">South Odorkor</option>
+											<option value="Sukura">Sukura</option>
+											<option value="T/Junction">T/Junction</option>
+											<option value="Tantra Hill">Tantra Hill</option>
+											<option value="Teshie New Town">Teshie New Town</option>
+											<option value="Taifa">Taifa</option>
+											<option value="Teshie Old Town">Teshie Old Town</option>
+											<option value="Teshie-Nungua Estates">Teshie-Nungua Estates</option>
+											<option value="Trassacco Valley Estates">Trassacco Valley Estates</option>
+											<option value="West Legon">West Legon</option>
+
+										</select>
+									</div>
+
+									{{!-- </div>
+										<div class="form-group">
+											<label class="col-form-label" for="appendedInput">City</label>
+											<div class="controls">
+												<div class="input-group">
+													<div class="input-group-append">
+														<span class="input-group-text">@</span>
+													</div>
+													<input class="form-control" id="cities" name="pcity" size="16"
+														type="text">
+												</div>
+												<span class="help-block"></span>
+											</div>
+										</div> --}}
+
+										<div class="form-actions">
+											<button class="btn btn-primary" type="submit">Save changes</button>
+											<button class="btn btn-secondary" type="reset">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.col-->
+					</div>
+					{{/if}}
+
+				</div>
+			</form>
+
+
+		</div>
+	</div>
+
+</main>
+
+<script>
+	//Listen for file selection
+	var fileButton = document.getElementById('file-multiple-input');
+	var uploader = document.getElementById('uploader');
+	var urlField = document.getElementById('file-url');
+
+	fileButton.addEventListener('change', function(e){
+		//Get files
+		for (var i = 0; i < e.target.files.length; i++) {
+			var imageFile = e.target.files[i];
+
+			//console.log(imageFile);
+
+			uploadImageAsPromise(imageFile);
+		}
+	});
+
+	//Handle waiting to upload each file using promise
+	var imagesArray = [];
+
+	function uploadImageAsPromise (imageFile) {
+
+		//random numbers for file naming
+		var min = Math.ceil(0);
+		var max = Math.floor(1000000);
+		var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+		console.log("random number: " + randomNumber);
+
+		//date and time for file name
+		var today = new Date();
+		var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var dateTime = date + '-' + time;
+		console.log("date and time: " + dateTime);
+
+		var fileName = dateTime + randomNumber;
+
+		return new Promise(function (resolve, reject) {
+			var storageRef = firebase.storage().ref("/Resorts"+"/"+fileName+imageFile.name);
+
+			//Upload file
+			var task = storageRef.put(imageFile);
+
+			//Update progress bar
+			task.on('state_changed',
+				function progress(snapshot){
+					var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+					uploader.innerText = `${percentage}%`;
+					uploader.style.width = `${percentage}%`;
+				},
+				function error(err){
+					alert("image could not upload, because there is no internet");
+					console.log(err);
+				},
+				function complete(){
+					storageRef.getDownloadURL().then(function(url){
+						console.log(url);
+						imagesArray.push(url);
+						urlField.value = url;//imagesArray;
+						console.log(imagesArray);
+					});
+					{{!-- console.log(task.snapshot.ref.downloadURL);
+					var downloadURL = task.snapshot.downloadURL;
+					console.log(downloadURL); --}}
+				}
+			);
+		});
+	}
+
+</script>

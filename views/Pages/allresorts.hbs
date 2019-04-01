@@ -1,0 +1,166 @@
+<main class="main">
+	<div class="container-fluid">
+		<div id="ui-view">
+			<br/>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+
+							<div class="form-group">
+								<label class="col-form-label" for="appendedInputButton">Enter Resort name to search</label>
+								<div class="controls">
+									<div class="input-group">
+										<input class="form-control" onkeyup=myFunction() id="appendedInputButton" placeholder="Enter text to search ..." size=""
+											type="text">
+										<span class="input-group-append">
+											<button class="btn btn-secondary" type="button">Search!</button>
+										</span>
+									</div>
+								</div>
+							</div>
+
+						<div class="card-body">
+							<table id="myTable" class="table table-responsive-sm table-bordered table-striped table-sm">
+								<thead>
+									<tr>
+										<th>Resort Name</th>
+										<th>Location</th>
+										<th>Date</th>
+										<th>Status</th>
+										<th>Rate Per Day</th>
+										<th>Location</th>
+										<th class="actionsBtn">View | Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{#each data}}
+										<tr>
+											<td hidden id="objectId">{{_id}}</td>
+											<td>{{resortName}}</td>
+											<td>{{rcountry}}</td>
+											<td>{{rregion}}</td>
+											<td>{{rcity}}</td>
+											<td>
+												<span class="badge badge-success">Online</span>
+											</td>
+											<td>GH¢ {{ratePerDay}}</td>
+											<td>
+												<div class="row">
+													<form action="/resortdetail" enctype="application/x-www-form-urlencoded" method="POST">
+														<input hidden type="text" name="resortId" value={{_id}} id="variables">
+														<div class="col-6">
+															<button type="submit" id="viewBtn" class="btn btn-sm btn-primary">
+																View
+															</button>
+														</div>
+													</form>
+													|
+													<div class="col-5">
+														<a id="deleteBtn" onclick=deleteMethod() class="btn btn-sm btn-danger">
+															Delete
+														</a>
+													</div>
+												</div>
+
+											</td>
+										</tr>
+									{{/each}}
+								</tbody>
+							</table>
+							<style>
+								.btn{
+									margin-left: 0px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+								}
+
+								.actionsBtn{
+									text-align: center;
+								}
+							</style>
+						</div>
+
+					</div>
+				</div>
+				<!-- /.col-->
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+
+		var table = document.getElementsByTagName("table")[0];
+		var tbody = table.getElementsByTagName("tbody")[0];
+
+		function deleteMethod(){
+				window.location.reload();
+				tbody.onclick = function (e) {
+				e = e || window.event;
+				var data = [];
+				var target = e.srcElement || e.target;
+				while (target && target.nodeName !== "TR") {
+					target = target.parentNode;
+				}
+				if (target) {
+					var cells = target.getElementsByTagName("td");
+					for (var i = 0; i < cells.length; i++) {
+						data.push(cells[i].innerText);
+					}
+				}
+				console.log(data[0]);
+
+				axios.post('/allresorts',{
+					resortId: data[0]
+				}).then((err,res) => {
+					console.log(res)
+					window.location.reload();
+				})
+			};
+		}
+
+		function viewMoreMethod(){
+				//window.location.reload();
+				tbody.onclick = function (e) {
+				e = e || window.event;
+				var data = [];
+				var target = e.srcElement || e.target;
+				while (target && target.nodeName !== "TR") {
+					target = target.parentNode;
+				}
+				if (target) {
+					var cells = target.getElementsByTagName("td");
+					for (var i = 0; i < cells.length; i++) {
+						data.push(cells[i].innerText);
+					}
+				}
+			};
+		}
+
+		//search method
+		function myFunction() {
+			// Declare variables
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("appendedInputButton");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+	</script>
+
+</main>

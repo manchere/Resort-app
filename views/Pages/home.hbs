@@ -1,0 +1,152 @@
+<main class="main">
+	<br />
+	<div class="container-fluid">
+		<div class="animated fadeIn">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3">
+					<div class="card text-white bg-primary">
+						<div class="card-body pb-0">
+							<div class="btn-group float-right">
+								<button class="btn btn-transparent dropdown-toggle p-0" type="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icon-settings"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="/">Refresh</a>
+								</div>
+							</div>
+							<div class="text-value">{{totalProperties}}</div>
+							<div>Resorts Listed</div>
+						</div>
+						<div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+							<canvas class="chart" id="card-chart1" height="100"></canvas>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3">
+					<div class="card text-white bg-info">
+						<div class="card-body pb-0">
+							<button class="btn btn-transparent p-0 float-right" type="button">
+								<i class="icon-location-pin"></i>
+							</button>
+							<div class="text-value">0</div>
+							<div>Payments Received</div>
+						</div>
+						<div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+							<canvas class="chart" id="card-chart2" height="70"></canvas>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3">
+					<div class="card text-white bg-warning">
+						<div class="card-body pb-0">
+							<div class="btn-group float-right">
+								<button class="btn btn-transparent dropdown-toggle p-0" type="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icon-settings"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="/">Refresh</a>
+								</div>
+							</div>
+							<div class="text-value">0</div>
+							<div>Total Resorts Listed</div>
+						</div>
+						<div class="chart-wrapper mt-3" style="height:70px;">
+							<canvas class="chart" id="card-chart3" height="70"></canvas>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3">
+					<div class="card text-white bg-danger">
+						<div class="card-body pb-0">
+							<div class="btn-group float-right">
+								<button class="btn btn-transparent dropdown-toggle p-0" type="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icon-settings"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="/">Refresh</a>
+								</div>
+							</div>
+							<div class="text-value">0</div>
+							<div>total Viewers</div>
+						</div>
+						<div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+							<canvas class="chart" id="card-chart4" height="70"></canvas>
+						</div>
+					</div>
+				</div>
+
+				 <!-- /.row-->
+				<div class="card col-12">
+					<div class="card-body">
+						<table id="myTable" class="table table-responsive-sm table-bordered table-striped table-sm">
+								<thead>
+									<tr>
+										<th>Resort Name</th>
+										<th>Location</th>
+										<th>Date</th>
+										<th>Status</th>
+										<th>Rate Per Day</th>
+										<th>Location</th>
+										{{!-- <th class="actionsBtn">View | Delete</th> --}}
+									</tr>
+								</thead>
+								<tbody>
+									{{#each data}}
+										<tr>
+											<td hidden id="objectId">{{_id}}</td>
+											<td>{{resortName}}</td>
+											<td>{{rcountry}}</td>
+											<td>{{rregion}}</td>
+											<td>{{rcity}}</td>
+											<td>
+												<span class="badge badge-success">Online</span>
+											</td>
+											<td>GH¢ {{ratePerDay}}</td>
+											{{!-- <td>
+												<div class="row">
+													<form action="/propertydetail" enctype="application/x-www-form-urlencoded" method="POST">
+														<input hidden type="text" name="propertyId" value={{_id}} id="variables">
+														<div class="col-6">
+															<button type="submit" id="viewBtn" class="btn btn-sm btn-primary">
+																View
+															</button>
+														</div>
+													</form>
+													|
+													<div class="col-5">
+														<a id="deleteBtn" onclick=deleteMethod() class="btn btn-sm btn-danger">
+															Delete
+														</a>
+													</div>
+												</div>
+											</td> --}}
+										</tr>
+									{{/each}}
+								</tbody>
+							</table>
+							<style>
+								.btn{
+									margin-left: 0px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+								}
+
+								.actionsBtn{
+									text-align: center;
+								}
+							</style>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</main>

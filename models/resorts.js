@@ -7,7 +7,17 @@ const resortShema = mongoose.Schema({
 		required: true
 	},
 
-	resortLocation: {
+	rcountry: {
+		type: String,
+		required: true
+	},
+
+	rregion: {
+		type: String,
+		required: true
+	},
+
+	rcity: {
 		type: String,
 		required: true
 	},
@@ -53,7 +63,7 @@ const resortShema = mongoose.Schema({
 
 	dateCreated: {
 		type: String,
-		required: true
+		required: false
 	}
 });
 
