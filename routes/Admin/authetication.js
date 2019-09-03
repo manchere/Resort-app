@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-const { Resorts } = require('./../../models/resorts');
+const User = require('./../../models/user');
 
 /* GET home page. */
 router.route('/')
@@ -29,48 +29,50 @@ router.route('/register')
 		res.render('Authentications/register', { layout:'Layouts/auth_layout', title: 'Resort Locator - Register' });
 	})
 	.post((req,res,next) => {
-		req.checkBody('firstname', 'Empty First Name').notEmpty();
-		req.checkBody('lastname', 'Empty Last Name').notEmpty();
-		// req.checkBody('email', 'Invalid Email').isEmail();
-		// req.checkBody('mobilenumber','Incorrect Mobile Number').isMobilePhone();
-		// req.checkBody('password', 'Empty Password').notEmpty();
-		// req.checkBody('confirmpassword', 'Password do not match').equals(req.body.confirmPassword).notEmpty();
+		console.log(req.body)
+		// req.checkBody('firstname', 'Empty First Name').notEmpty();
+		// req.checkBody('lastname', 'Empty Last Name').notEmpty();
+		// // req.checkBody('email', 'Invalid Email').isEmail();
+		// // req.checkBody('mobilenumber','Incorrect Mobile Number').isMobilePhone();
+		// // req.checkBody('password', 'Empty Password').notEmpty();
+		// // req.checkBody('confirmpassword', 'Password do not match').equals(req.body.confirmPassword).notEmpty();
 
-		var errors = req.validationErrors();
-        if (errors) {
-			console.log(errors);
-            res.render('Authentications/register', {
-                lastName: req.body.lastname,
-                email: req.body.email,
-                errorMesage: errors
-            });
-        }else {
-			var user = new User();
-			if (req.body.type !== 'Property Owner' || req.body.type !== 'Content Provider') {
-				user.isAdmin = false;
-			} else {
-				user.isAdmin = true;
-			}
-			user.firstName = req.body.firstname;
-			user.lastName = req.body.lastname;
-			user.mobileNumber = req.body.mobilenumber;
-			user.type = req.body.type;
-			user.email = req.body.email;
-			user.location = req.body.location;
-            user.setPassword(req.body.password);
-            user.save((err,user) => {
-                if (err) {
-					console.log(err.message);
-					res.render('Authentications/register', {
-						layout: 'Layouts/auth_layout',
-                        errorMesage: err
-                    })
-                }else{
-                    res.redirect('/login');
-                }
-            })
-        }
-		// res.render('Pages/home', { layout:'Layouts/dashboard_layout', title: 'Resort Locator - Home' });
+		// var errors = req.validationErrors();
+        // if (errors) {
+		// 	console.log(errors);
+        //     res.render('Authentications/register', {
+		// 		layout:'Layouts/auth_layout',
+        //         lastName: req.body.lastname,
+        //         email: req.body.email,
+        //         errorMesage: errors
+        //     });
+        // }else {
+		// 	var user = new User();
+		// 	if (req.body.type !== 'Property Owner' || req.body.type !== 'Content Provider') {
+		// 		user.isAdmin = false;
+		// 	} else {
+		// 		user.isAdmin = true;
+		// 	}
+		// 	user.firstName = req.body.firstname;
+		// 	user.lastName = req.body.lastname;
+		// 	user.mobileNumber = req.body.mobilenumber;
+		// 	user.type = req.body.type;
+		// 	user.email = req.body.email;
+		// 	user.location = req.body.location;
+        //     user.setPassword(req.body.password);
+        //     user.save((err,user) => {
+        //         if (err) {
+		// 			console.log(err.message);
+		// 			res.render('Authentications/register', {
+		// 				layout: 'Layouts/auth_layout',
+        //                 errorMesage: err
+        //             })
+        //         }else{
+        //             res.redirect('/');
+        //         }
+        //     })
+        // }
+		res.render('Pages/home', { layout:'Layouts/dashboard_layout', title: 'Resort Locator - Home' });
 	})
 
 	// User Profile

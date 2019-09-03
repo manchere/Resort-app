@@ -24,7 +24,7 @@ const resortShema = mongoose.Schema({
 
 	locationCoordinate: {
 		logitude: {
-			type: String,
+			type:String,
 			defaut: -0
 		},
 		latitude: {

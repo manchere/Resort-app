@@ -280,6 +280,21 @@
 
 </main>
 
+
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAZhjFRmEWtCg-NRAL5tHq2JjO18cAReqc",
+    authDomain: "restortlocator.firebaseapp.com",
+    databaseURL: "https://restortlocator.firebaseio.com",
+    projectId: "restortlocator",
+    storageBucket: "restortlocator.appspot.com",
+    messagingSenderId: "1069388312618"
+  };
+  firebase.initializeApp(config);
+</script>
+
 <script>
 	//Listen for file selection
 	var fileButton = document.getElementById('file-multiple-input');
