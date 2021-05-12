@@ -24,7 +24,7 @@
     "nodemon": "^1.18.10",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "chart.js": "2.7.3",
+    "chart.js": "2.9.4",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "1.2.0"
   }
 }
